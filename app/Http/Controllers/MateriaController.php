@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Materia;
@@ -10,39 +9,28 @@ class MateriaController extends Controller
     public function index()
     {
         $materias = Materia::all();
-        return response()->json($materias);
+        return view('materias.index', compact('materias'));
+    }
+
+    public function create()
+    {
+        return view('materias.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string',
-            'clave'  => 'required|string|unique:materias',
+            'nombre' => 'required|string|max:255',
+            'clave'  => 'required|string|unique:materias,clave',
         ]);
 
-        $materia = Materia::create($request->all());
-        return response()->json($materia, 201);
-    }
-
-    public function show(Materia $materia)
-    {
-        return response()->json($materia);
-    }
-
-    public function update(Request $request, Materia $materia)
-    {
-        $request->validate([
-            'nombre' => 'sometimes|string',
-            'clave'  => 'sometimes|string|unique:materias,clave,' . $materia->id,
-        ]);
-
-        $materia->update($request->all());
-        return response()->json($materia);
+        Materia::create($request->only('nombre', 'clave'));
+        return redirect()->route('materias.index')->with('success', 'Materia creada correctamente');
     }
 
     public function destroy(Materia $materia)
     {
         $materia->delete();
-        return response()->json(['message' => 'Materia eliminada']);
+        return redirect()->route('materias.index')->with('success', 'Materia eliminada');
     }
 }

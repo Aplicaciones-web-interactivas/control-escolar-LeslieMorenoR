@@ -62,7 +62,12 @@
                     @endforeach
                 </div>
             </div>
-
+            @if($errors->has('colision'))
+    <div class="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">warning</span>
+        {{ $errors->first('colision') }}
+    </div>
+@endif
             <button type="submit" class="w-full bg-primary text-white py-2 rounded-lg text-sm">
                 Guardar Horario
             </button>

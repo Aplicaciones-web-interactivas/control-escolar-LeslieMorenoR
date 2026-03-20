@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\HorarioController;
-
+use App\Http\Controllers\GrupoController;
 
 // Rutas públicas
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -18,4 +18,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('materias', MateriaController::class);
     Route::resource('horarios', HorarioController::class);
+    
+    Route::resource('grupos', GrupoController::class);
 });

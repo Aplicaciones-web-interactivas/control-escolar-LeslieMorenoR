@@ -55,11 +55,10 @@
             {{-- Logo y título --}}
             <div class="flex flex-col items-center gap-4 text-center">
                 <div class="flex items-center justify-center size-16 rounded-xl bg-primary text-white shadow-lg shadow-primary/20">
-                    <span class="material-symbols-outlined" style="font-size: 2.5rem;">school</span>
+                    
                 </div>
                 <div>
                     <h1 class="text-slate-900 text-3xl font-bold tracking-tight">Control Escolar</h1>
-                    <p class="text-slate-600 mt-2">Gestiona tu trayectoria académica con facilidad</p>
                 </div>
             </div>
 
@@ -144,8 +143,7 @@
                         class="w-full bg-primary hover:bg-primary-hover text-white font-bold h-12 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
                     >
                         <span>Entrar</span>
-                        <span class="material-symbols-outlined" style="font-size: 1.1rem;">login</span>
-                    </button>
+                                            </button>
 
                 </form>
 
@@ -156,17 +154,6 @@
                     <div class="flex-grow border-t border-slate-200"></div>
                 </div>
 
-                {{-- SSO Botones --}}
-                <div class="grid grid-cols-2 gap-4">
-                    <button class="flex items-center justify-center gap-2 h-11 px-4 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-colors">
-                        <img class="size-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABd3uPmvxc1rnkVGtjt8ev09TpB5X5EOmcUE7kIvvrHgvg6cpiMFZJn4-3NRi_8GEnN6dlpUrHO3x_sW8_2xNTZU3u4x4nM46bDAoUGBygB7a5G16Pw8-w_plXmszpe-8oxRZ2pvIeN6KnwpGatUflrkxbeVOkiVXy_S2v-67qsPaL062tgBQU23vzUQB3PN7ojcZHCvqsIfvGrIvGSBafFpF_956sRgrFIkxFfayMClXyhwFnWsrOTIhPgmvnr3HXOKmDiNYEra8" alt="Google"/>
-                        Google
-                    </button>
-                    <button class="flex items-center justify-center gap-2 h-11 px-4 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-colors">
-                        <span class="material-symbols-outlined" style="font-size: 1.25rem; color: #0078d4;">smb_share</span>
-                        Microsoft
-                    </button>
-                </div>
 
             </div>
 

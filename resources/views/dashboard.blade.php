@@ -52,20 +52,20 @@
             Usuarios
         </a>
 
-        <a href="{{ route('materias.index') }}"" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
-            <span class="material-symbols-outlined">menu_book</span>
-            Materias
-        </a>
+<a href="{{ route('materias.index') }}" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
+    <span class="material-symbols-outlined">menu_book</span>
+    Materias
+</a>
 
-        <a href="#" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
-            <span class="material-symbols-outlined">schedule</span>
-            Horarios
-        </a>
+<a href="{{ route('horarios.index') }}" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
+    <span class="material-symbols-outlined">schedule</span>
+    Horarios
+</a>
 
-        <a href="{{ route('horarios.index') }}" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
-            <span class="material-symbols-outlined">groups</span>
-            Grupos
-        </a>
+<a href="{{ route('grupos.index') }}" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
+    <span class="material-symbols-outlined">groups</span>
+    Grupos
+</a>
 
     </nav>
 

@@ -18,4 +18,8 @@ protected $fillable = [
         'password',
         'remember_token',
     ];
+    public function inscripciones()
+{
+    return $this->hasMany(Inscripcion::class, 'user_id');
+}
 }

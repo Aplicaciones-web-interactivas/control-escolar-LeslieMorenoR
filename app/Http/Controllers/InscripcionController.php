@@ -1,41 +1,48 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Inscripcion;
+use App\Models\Grupo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InscripcionController extends Controller
 {
+    // Alumno ve los grupos disponibles
     public function index()
     {
-        $inscripciones = Inscripcion::with(['grupo', 'alumno'])->get();
-        return response()->json($inscripciones);
+        $grupos = Grupo::with(['horario.materia', 'horario.maestro'])->get();
+        $misInscripciones = Inscripcion::where('user_id', Auth::id())->pluck('grupo_id');
+        return view('inscripciones.index', compact('grupos', 'misInscripciones'));
     }
 
+    // Alumno se inscribe
     public function store(Request $request)
     {
         $request->validate([
             'grupo_id' => 'required|exists:grupos,id',
-            'user_id'  => 'required|exists:users,id',
         ]);
 
-        // Verificar que no esté ya inscrito
-        $existe = Inscripcion::where('grupo_id', $request->grupo_id)
-                             ->where('user_id', $request->user_id)
-                             ->exists();
+        $yaInscrito = Inscripcion::where('user_id', Auth::id())
+                                 ->where('grupo_id', $request->grupo_id)
+                                 ->exists();
 
-        if ($existe) {
-            return response()->json(['message' => 'El alumno ya está inscrito en este grupo'], 422);
+        if ($yaInscrito) {
+            return back()->withErrors(['error' => 'Ya estás inscrito en este grupo.']);
         }
 
-        $inscripcion = Inscripcion::create($request->all());
-        return response()->json($inscripcion, 201);
+        Inscripcion::create([
+            'grupo_id' => $request->grupo_id,
+            'user_id'  => Auth::id(),
+        ]);
+
+        return back()->with('success', 'Inscripción realizada correctamente.');
     }
 
+    // Alumno cancela inscripción
     public function destroy(Inscripcion $inscripcion)
     {
         $inscripcion->delete();
-        return response()->json(['message' => 'Inscripción eliminada']);
+        return back()->with('success', 'Inscripción cancelada.');
     }
 }

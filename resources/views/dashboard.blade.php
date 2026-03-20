@@ -66,6 +66,20 @@
     <span class="material-symbols-outlined">groups</span>
     Grupos
 </a>
+<a href="{{ route('inscripciones.index') }}" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
+    <span class="material-symbols-outlined">assignment</span>
+    Inscripciones
+</a>
+
+<a href="{{ route('calificaciones.index') }}" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
+    <span class="material-symbols-outlined">grade</span>
+    Calificaciones
+</a>
+
+<a href="{{ route('calificaciones.mias') }}" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
+    <span class="material-symbols-outlined">school</span>
+    Mis Calificaciones
+</a>
 
     </nav>
 

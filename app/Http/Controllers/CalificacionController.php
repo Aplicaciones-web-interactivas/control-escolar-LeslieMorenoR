@@ -1,18 +1,40 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Calificacion;
+use App\Models\Grupo;
+use App\Models\Inscripcion;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CalificacionController extends Controller
 {
+    // Maestro ve sus grupos para calificar
     public function index()
     {
-        $calificaciones = Calificacion::with(['grupo', 'alumno'])->get();
-        return response()->json($calificaciones);
+        $grupos = Grupo::with(['horario.materia'])
+                    ->whereHas('horario', fn($q) => $q->where('user_id', Auth::id()))
+                    ->get();
+        return view('calificaciones.index', compact('grupos'));
     }
 
+    // Maestro ve alumnos de un grupo para calificar
+  public function show($id)
+{
+    $grupo = Grupo::with(['horario.materia', 'horario.maestro'])->findOrFail($id);
+
+    $inscripciones = Inscripcion::where('grupo_id', $grupo->id)
+                        ->with('alumno')
+                        ->get();
+
+    $calificaciones = Calificacion::where('grupo_id', $grupo->id)
+                        ->pluck('calificacion', 'user_id');
+
+    return view('calificaciones.show', compact('grupo', 'inscripciones', 'calificaciones'));
+}
+
+    // Maestro guarda calificación
     public function store(Request $request)
     {
         $request->validate([
@@ -21,22 +43,20 @@ class CalificacionController extends Controller
             'calificacion' => 'required|numeric|min:0|max:10',
         ]);
 
-        $calificacion = Calificacion::updateOrCreate(
+        Calificacion::updateOrCreate(
             ['grupo_id' => $request->grupo_id, 'user_id' => $request->user_id],
             ['calificacion' => $request->calificacion]
         );
 
-        return response()->json($calificacion, 201);
+        return back()->with('success', 'Calificación guardada.');
     }
 
-    public function show(Calificacion $calificacion)
+    // Alumno ve sus calificaciones
+    public function misCalificaciones()
     {
-        return response()->json($calificacion->load(['grupo', 'alumno']));
-    }
-
-    public function destroy(Calificacion $calificacion)
-    {
-        $calificacion->delete();
-        return response()->json(['message' => 'Calificación eliminada']);
+        $calificaciones = Calificacion::where('user_id', Auth::id())
+                            ->with('grupo.horario.materia')
+                            ->get();
+        return view('calificaciones.mis_calificaciones', compact('calificaciones'));
     }
 }

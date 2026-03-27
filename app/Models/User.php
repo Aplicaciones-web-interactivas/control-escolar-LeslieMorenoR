@@ -22,4 +22,10 @@ protected $fillable = [
 {
     return $this->hasMany(Inscripcion::class, 'user_id');
 }
+// app/Models/User.php
+public function grupos()
+{
+    return $this->belongsToMany(Grupo::class, 'inscripciones', 'user_id', 'grupo_id')
+                ->withTimestamps();
+}
 }

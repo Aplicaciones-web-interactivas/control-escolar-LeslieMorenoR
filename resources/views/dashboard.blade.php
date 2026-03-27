@@ -80,6 +80,15 @@
     <span class="material-symbols-outlined">school</span>
     Mis Calificaciones
 </a>
+<a href="{{ route('tareas.index') }}" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
+    <span class="material-symbols-outlined">assignment</span>
+    Tareas
+</a>
+
+<a href="{{ route('tareas.mias') }}" class="sidebar-link flex items-center gap-2 p-2 rounded hover:bg-gray-100">
+    <span class="material-symbols-outlined">task</span>
+    Mis Tareas
+</a>
 
     </nav>
 

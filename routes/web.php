@@ -8,6 +8,7 @@ use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\InscripcionController;
 use App\Http\Controllers\CalificacionController;
+use App\Http\Controllers\TareaController;
 
 // Rutas públicas
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -26,4 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('inscripciones', InscripcionController::class)->only(['index', 'store', 'destroy']);
     Route::resource('calificaciones', CalificacionController::class)->only(['index', 'show', 'store']);
     Route::get('mis-calificaciones', [CalificacionController::class, 'misCalificaciones'])->name('calificaciones.mias');
+    Route::resource('tareas', TareaController::class)->only(['index', 'create', 'store', 'show', 'destroy']);
+    Route::get('mis-tareas', [TareaController::class, 'misTareas'])->name('tareas.mias');
+    Route::post('entregas', [TareaController::class, 'entregar'])->name('entregas.store');
 });

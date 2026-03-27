@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('institutional_key')->unique();
             $table->string('password');
-            $table->enum('role', ['student', 'teacher', 'admin'])->default('student');
+            $table->enum('role', ['student', 'teacher'])->default('student');
             $table->boolean('is_activate')->default(true);
             $table->rememberToken();
             $table->timestamps();

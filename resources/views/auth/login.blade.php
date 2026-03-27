@@ -126,16 +126,6 @@
                         </div>
                     </div>
 
-                    {{-- Recordarme --}}
-                    <div class="flex items-center gap-2">
-                        <input
-                            class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary"
-                            id="remember"
-                            type="checkbox"
-                            name="remember"
-                        />
-                        <label class="text-sm text-slate-600" for="remember">Recordarme por 30 días</label>
-                    </div>
 
                     {{-- Botón de envío --}}
                     <button
@@ -147,27 +137,9 @@
 
                 </form>
 
-                {{-- Divisor --}}
-                <div class="relative flex items-center py-2">
-                    <div class="flex-grow border-t border-slate-200"></div>
-                    <span class="flex-shrink mx-4 text-slate-400 text-xs uppercase tracking-widest font-medium">O continúa con</span>
-                    <div class="flex-grow border-t border-slate-200"></div>
-                </div>
 
 
             </div>
-
-            {{-- Footer --}}
-            <footer class="flex flex-col items-center gap-4">
-                <p class="text-slate-500 text-sm">
-                    ¿Eres nuevo? <a class="text-primary font-semibold hover:underline" href="#">Contacta a administración</a>
-                </p>
-                <div class="flex gap-6 text-xs text-slate-400">
-                    <a class="hover:text-slate-600 transition-colors" href="#">Aviso de Privacidad</a>
-                    <a class="hover:text-slate-600 transition-colors" href="#">Términos de Uso</a>
-                    <a class="hover:text-slate-600 transition-colors" href="#">Centro de Ayuda</a>
-                </div>
-            </footer>
 
         </div>
     </div>

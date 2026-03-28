@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Materia;
 use App\Models\Horario;
 use App\Models\Grupo;
 use App\Models\Tarea;
@@ -15,6 +16,16 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
+        if ($user->role === 'admin') {
+            $data = [
+                'alumnos'  => User::where('role', 'student')->count(),
+                'materias' => Materia::count(),
+                'docentes' => User::where('role', 'teacher')->count(),
+                'horarios' => Horario::count(),
+                'grupos'   => Grupo::count(),
+            ];
+            return view('dashboard.admin', $data);
+        }
 
         if ($user->role === 'teacher') {
             $data = [
@@ -27,7 +38,7 @@ class DashboardController extends Controller
             return view('dashboard.teacher', $data);
         }
 
-        // Alumno
+        // student
         $data = [
             'inscripciones'  => Inscripcion::where('user_id', $user->id)->count(),
             'calificaciones' => Calificacion::where('user_id', $user->id)->count(),

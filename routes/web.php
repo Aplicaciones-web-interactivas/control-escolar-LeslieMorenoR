@@ -16,8 +16,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // Rutas protegidas
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');    
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::resource('materias', MateriaController::class);
     Route::resource('horarios', HorarioController::class);
